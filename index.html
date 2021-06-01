@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pendu - JS</title>
+</head>
+<body>
+    <h1>Pendu</h1>
+
+    <!-- Zone pour afficher le mot caché -->
+    <p id="motCache"></p>
+    <!-- Zone d'entrée utilisateur -->
+    <form>
+        <label for="lettre">Tentez votre chance</label>
+        <input type="text" id="lettre" name="lettre">
+        <button type="submit">Valider</button>
+    </form>
+
+    <!-- Afficher les lettres qui ont été tenté -->
+    <p>Tentatives: <span id="tentatives"></span></p>
+
+    <script src="./assets/js/pendu.js"></script>
+</body>
+</html>
