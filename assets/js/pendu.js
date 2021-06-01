@@ -3,12 +3,14 @@ const motCache = document.querySelector("#motCache");
 const formulaire = document.querySelector("form");
 const lettreInput = document.querySelector("#lettre");
 const tentatives = document.querySelector("#tentatives");
+const message = document.querySelector("#message")
 
 // Variables pour la logique du pendu
 const motATrouver = "Poulet".toLowerCase().split("");
 //remplissage d'un tableau avec des étoiles
 let progresMot = Array(motATrouver.length).fill("_");
 let lettreTentees = [];
+let victoire = false;
 
 // logique du pendu
 
@@ -30,18 +32,32 @@ function deviner(){
             progresMot[positions] = motATrouver[positions];
         })
         motCache.innerText = progresMot.join("-");
+    }else {
+        // sinon, on met la lettre dans le tableau de lettres tentées
+        lettreTentees.push(lettreInput.value.toLowerCase());
+        tentatives.innerText = lettreTentees;
     }
     console.log({positions, motATrouver, progresMot});
     lettreInput.value = "";
+    if(lettreTentees.length >= 9){
+        message.innerText = "Vous avez perdu";
+        reset();
+    }
+    victoire = progresMot.every((lettre, index)=>{
+        return motATrouver[index] == lettre;
+    })
+    if(victoire){
+        message.innerText = "Vous avez gagné";
+        reset();
+    }
 }
-
 
 function reset(){
-    
+    progresMot = Array(motATrouver.length).fill("_");
     motCache.innerText = progresMot.join("-");
     lettreTentees = [];
+    tentatives.innerText = "";    
 }
-
 
 window.addEventListener("load", reset);
 formulaire.addEventListener("submit", (event)=>{
